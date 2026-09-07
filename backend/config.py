@@ -6,13 +6,22 @@ try:
 except ImportError:
     from resource_paths import get_database_path, is_frozen
 
+
+def normalize_database_url(database_url):
+    """Aceita o esquema legado postgres:// usado por alguns provedores."""
+    if database_url and database_url.startswith('postgres://'):
+        return 'postgresql://' + database_url[len('postgres://'):]
+    return database_url
+
 # Limites de upload
 MAX_METHOD_PDF_SIZE = 50 * 1024 * 1024  # 50 MB para método personalizado
 
 class Config:
     """Configuração base"""
     DEFAULT_DATABASE_URL = f'sqlite:///{get_database_path().as_posix()}'
-    SQLALCHEMY_DATABASE_URI = os.getenv('DATABASE_URL', DEFAULT_DATABASE_URL)
+    SQLALCHEMY_DATABASE_URI = normalize_database_url(
+        os.getenv('DATABASE_URL', DEFAULT_DATABASE_URL)
+    )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
     SECRET_KEY = os.getenv('SECRET_KEY')
@@ -35,9 +44,6 @@ class ProductionConfig(Config):
     DEBUG = False
     TESTING = False
     SESSION_COOKIE_SECURE = os.getenv('SESSION_COOKIE_SECURE', 'true').lower() == 'true'
-    if not os.getenv('SECRET_KEY'):
-        raise RuntimeError('SECRET_KEY is required in production. Set it in the environment before deploy.')
-
 class TestingConfig(Config):
     """Configuração para testes"""
     TESTING = True

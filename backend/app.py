@@ -6,6 +6,9 @@ from flask_login import LoginManager, current_user
 from flask_cors import CORS
 from sqlalchemy import text
 
+# Carregar variáveis antes de importar a configuração, inclusive no serverless.
+load_dotenv()
+
 try:
     from .resource_paths import get_resource_path, ensure_user_data_dir, seed_user_data
 except ImportError:
@@ -17,9 +20,6 @@ try:
 except ImportError:
     from config import config
     from models import db, User, UserSettings, GamificationProgress
-
-# Carregar variáveis de ambiente
-load_dotenv()
 
 def ensure_sqlite_schema(app):
     """Repara migrações mínimas para bancos SQLite antigos."""
@@ -123,6 +123,12 @@ def create_app(config_name=None):
         config_name = os.getenv('FLASK_ENV', 'development')
     if config_name not in config:
         config_name = 'development'
+
+    if config_name == 'production' and not os.getenv('SECRET_KEY'):
+        raise RuntimeError('SECRET_KEY is required in production. Set it in the environment before deploy.')
+    database_url = os.getenv('DATABASE_URL', '')
+    if os.getenv('VERCEL') and (not database_url or database_url.startswith('sqlite')):
+        raise RuntimeError('DATABASE_URL must point to managed PostgreSQL on Vercel.')
     
     # Caminho do frontend (frontend agora está na raiz do repositório)
     # Antes o frontend ficava em '../projto my t'; agora apontamos para a raiz
@@ -198,7 +204,7 @@ def create_app(config_name=None):
     # Rota de teste
     @app.route('/api/health', methods=['GET'])
     def health():
-        return jsonify({'status': 'ok', 'message': 'Backend is running'})
+        return jsonify({'status': 'ok'})
     
     # Servir frontend (DEPOIS das APIs)
     @app.route('/')

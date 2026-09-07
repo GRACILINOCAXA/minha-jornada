@@ -8,7 +8,7 @@ if exist ".venv\Scripts\python.exe" (
     set "PYTHON=python"
 )
 
-%PYTHON% -m pip install -r requirements.txt
+%PYTHON% -m pip install -r requirements-desktop.txt
 if errorlevel 1 exit /b 1
 %PYTHON% -c "import PyInstaller, webview; print('Dependencias OK')"
 if errorlevel 1 exit /b 1
