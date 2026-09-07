@@ -1,0 +1,259 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Minha Jornada - Login</title>
+  <link rel="stylesheet" href="styles.css">
+  <style>
+    .auth-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    }
+    
+    .auth-card {
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+      width: 100%;
+      max-width: 400px;
+    }
+    
+    .auth-card h1 {
+      text-align: center;
+      color: #333;
+      margin-bottom: 10px;
+      font-size: 28px;
+    }
+    
+    .auth-card p {
+      text-align: center;
+      color: #999;
+      margin-bottom: 30px;
+      font-size: 14px;
+    }
+    
+    .form-group {
+      margin-bottom: 20px;
+    }
+    
+    .form-group label {
+      display: block;
+      margin-bottom: 8px;
+      color: #333;
+      font-weight: 500;
+      font-size: 14px;
+    }
+    
+    .form-group input {
+      width: 100%;
+      padding: 12px 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      font-size: 14px;
+      transition: border-color 0.3s;
+      box-sizing: border-box;
+    }
+    
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      box-shadow: 0 0 0 3px rgba(102, 126, 234, 0.1);
+    }
+    
+    .submit-btn {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      margin-top: 10px;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .submit-btn:disabled {
+      opacity: 0.7;
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .auth-links {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 20px;
+      font-size: 14px;
+    }
+    
+    .auth-links a {
+      color: #667eea;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+    
+    .auth-links a:hover {
+      color: #764ba2;
+    }
+    
+    .error {
+      background: #fee;
+      color: #c33;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      border-left: 4px solid #c33;
+    }
+    
+    .success {
+      background: #efe;
+      color: #3c3;
+      padding: 12px 15px;
+      border-radius: 8px;
+      margin-bottom: 20px;
+      font-size: 14px;
+      border-left: 4px solid #3c3;
+    }
+    
+    .loading {
+      display: none;
+      text-align: center;
+      color: #999;
+      font-size: 14px;
+      margin-top: 10px;
+    }
+    
+    .switch-form {
+      text-align: center;
+      margin-top: 20px;
+      padding-top: 20px;
+      border-top: 1px solid #eee;
+    }
+    
+    .switch-form p {
+      margin: 0;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .switch-form a {
+      color: #667eea;
+      text-decoration: none;
+      font-weight: 600;
+      cursor: pointer;
+    }
+    
+    .switch-form a:hover {
+      color: #764ba2;
+    }
+  </style>
+</head>
+<body class="light">
+  <div class="auth-container">
+    <div class="auth-card">
+      <!-- Login Form -->
+      <div id="loginForm">
+        <h1>🔐 Minha Jornada</h1>
+        <p>Entre na sua conta para continuar</p>
+        
+        <div id="loginError" class="error" style="display:none;"></div>
+        
+        <form id="loginFormElement" onsubmit="handleLogin(event)">
+          <div class="form-group">
+            <label for="loginEmail">E-mail ou Usuário</label>
+            <input type="text" id="loginEmail" placeholder="seu-email@exemplo.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="loginPassword">Senha</label>
+            <input type="password" id="loginPassword" placeholder="Sua senha" required>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="loginBtn">ENTRAR</button>
+          <div class="loading" id="loginLoading">Entrando...</div>
+        </form>
+        
+        <div class="auth-links">
+          <a href="#" onclick="showForgotPassword()">Esqueci minha senha</a>
+          <a href="#" onclick="switchToRegister()">Criar conta</a>
+        </div>
+      </div>
+      
+      <!-- Register Form -->
+      <div id="registerForm" style="display:none;">
+        <h1>✨ Criar Conta</h1>
+        <p>Faça parte da sua jornada</p>
+        
+        <div id="registerError" class="error" style="display:none;"></div>
+        <div id="registerSuccess" class="success" style="display:none;"></div>
+        
+        <form id="registerFormElement" onsubmit="handleRegister(event)">
+          <div class="form-group">
+            <label for="registerUsername">Nome de Usuário</label>
+            <input type="text" id="registerUsername" placeholder="seu-usuario" required minlength="3">
+          </div>
+          
+          <div class="form-group">
+            <label for="registerEmail">E-mail</label>
+            <input type="email" id="registerEmail" placeholder="seu-email@exemplo.com" required>
+          </div>
+          
+          <div class="form-group">
+            <label for="registerPassword">Senha</label>
+            <input type="password" id="registerPassword" placeholder="Mínimo 6 caracteres" required minlength="6">
+          </div>
+          
+          <div class="form-group">
+            <label for="registerPasswordConfirm">Confirmar Senha</label>
+            <input type="password" id="registerPasswordConfirm" placeholder="Confirme sua senha" required>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="registerBtn">CRIAR CONTA</button>
+          <div class="loading" id="registerLoading">Criando conta...</div>
+        </form>
+        
+        <div class="auth-links" style="justify-content: center;">
+          <a href="#" onclick="switchToLogin()">Voltar para login</a>
+        </div>
+      </div>
+      
+      <!-- Forgot Password Form -->
+      <div id="forgotForm" style="display:none;">
+        <h1>🔑 Recuperar Senha</h1>
+        <p>Digite seu e-mail para receber instruções</p>
+        
+        <div id="forgotError" class="error" style="display:none;"></div>
+        <div id="forgotSuccess" class="success" style="display:none;"></div>
+        
+        <form id="forgotFormElement" onsubmit="handleForgotPassword(event)">
+          <div class="form-group">
+            <label for="forgotEmail">E-mail</label>
+            <input type="email" id="forgotEmail" placeholder="seu-email@exemplo.com" required>
+          </div>
+          
+          <button type="submit" class="submit-btn" id="forgotBtn">ENVIAR INSTRUÇÕES</button>
+          <div class="loading" id="forgotLoading">Enviando...</div>
+        </form>
+        
+        <div class="auth-links" style="justify-content: center;">
+          <a href="#" onclick="switchToLogin()">Voltar para login</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script src="auth.js"></script>
+</body>
+</html>

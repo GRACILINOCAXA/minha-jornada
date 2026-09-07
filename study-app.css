@@ -1,0 +1,1046 @@
+/* ==================== STUDY APP STYLES ==================== */
+
+.study-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* ==================== HEADER ====================*/
+
+.study-header {
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid var(--accent, #6366f1);
+}
+
+.study-header h2 {
+  font-size: 1.8em;
+  margin: 0 0 15px 0;
+  color: var(--accent, #6366f1);
+}
+
+.progress-bar {
+  width: 100%;
+  height: 8px;
+  background: var(--muted, #e5e7eb);
+  border-radius: 4px;
+  overflow: hidden;
+  margin: 10px 0;
+}
+
+.progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, #6366f1, #8b5cf6);
+  transition: width 0.3s ease;
+}
+
+.progress-text {
+  display: inline-block;
+  font-size: 0.9em;
+  color: var(--muted-text, #666);
+  margin-top: 5px;
+}
+
+/* ==================== ACCORDION ====================*/
+
+.accordion-item {
+  border: 1px solid var(--muted, #e5e7eb);
+  border-radius: 8px;
+  margin-bottom: 12px;
+  overflow: hidden;
+  background: var(--bg, #fff);
+}
+
+.accordion-header {
+  display: flex;
+  align-items: center;
+  padding: 16px;
+  background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+  cursor: pointer;
+  transition: background 0.2s;
+  gap: 12px;
+}
+
+.accordion-header:hover {
+  background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+}
+
+.accordion-icon {
+  font-size: 1.2em;
+  transition: transform 0.3s;
+  display: inline-block;
+  width: 16px;
+}
+
+.accordion-title {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.fase-number {
+  font-weight: bold;
+  color: var(--accent, #6366f1);
+  font-size: 0.9em;
+  min-width: 70px;
+}
+
+.fase-name {
+  color: var(--text, #333);
+  font-size: 0.95em;
+}
+
+.accordion-progress {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 150px;
+}
+
+.progress-bar-mini {
+  width: 80px;
+  height: 6px;
+  background: var(--muted, #e5e7eb);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-label {
+  font-size: 0.8em;
+  color: var(--accent, #6366f1);
+  font-weight: bold;
+  min-width: 40px;
+  text-align: right;
+}
+
+.accordion-body {
+  padding: 16px;
+  background: var(--bg, #fff);
+  border-top: 1px solid var(--muted, #e5e7eb);
+  transition: max-height 0.3s ease;
+  max-height: 1000px;
+  overflow: hidden;
+}
+
+.accordion-body[style*="display: none"] {
+  max-height: 0;
+  padding: 0 16px;
+}
+
+/* ==================== SECTIONS ====================*/
+
+.section-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 8px;
+  border-bottom: 1px solid var(--muted, #e5e7eb);
+  transition: background 0.2s;
+}
+
+.section-item:last-child {
+  border-bottom: none;
+}
+
+.section-item:hover {
+  background: var(--muted, #f9fafb);
+}
+
+.section-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex: 1;
+}
+
+.status-icon {
+  font-size: 1.3em;
+  display: inline-block;
+  width: 20px;
+  text-align: center;
+}
+
+.section-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.section-number {
+  font-weight: bold;
+  color: var(--accent, #6366f1);
+  font-size: 0.85em;
+}
+
+.section-title {
+  color: var(--text, #333);
+  font-size: 0.95em;
+}
+
+.section-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.status-select {
+  padding: 6px 8px;
+  border: 1px solid var(--muted, #d1d5db);
+  border-radius: 4px;
+  background: var(--bg, #fff);
+  color: var(--text, #333);
+  font-size: 0.85em;
+  cursor: pointer;
+  min-width: 120px;
+}
+
+.status-select:hover {
+  border-color: var(--accent, #6366f1);
+}
+
+/* ==================== BUTTONS ====================*/
+
+.btn-pdf,
+.btn-review {
+  padding: 6px 12px;
+  border: none;
+  border-radius: 4px;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+}
+
+.btn-pdf {
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+}
+
+.btn-pdf:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.btn-review {
+  background: var(--muted, #f3f4f6);
+  color: var(--text, #333);
+  border: 1px solid var(--muted, #d1d5db);
+}
+
+.btn-review:hover {
+  background: #fbbf24;
+  color: #fff;
+  border-color: #fbbf24;
+}
+
+/* ==================== MÓDULOS (MÉTODO) ====================*/
+
+.modulo-section {
+  background: var(--muted, #f9fafb);
+  padding: 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  border-left: 4px solid var(--accent, #6366f1);
+}
+
+.modulo-section h4 {
+  margin: 0 0 4px 0;
+  color: var(--accent, #6366f1);
+  font-size: 0.95em;
+}
+
+.modulo-desc {
+  margin: 4px 0 12px 0;
+  font-size: 0.85em;
+  color: var(--muted-text, #666);
+}
+
+.modulo-actions {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* ==================== HINÁRIO ====================*/
+
+.hymn-search {
+  margin: 20px 0;
+}
+
+.hymn-search input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid var(--muted, #d1d5db);
+  border-radius: 6px;
+  font-size: 0.95em;
+}
+
+.hymn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  gap: 12px;
+  margin: 20px 0;
+}
+
+.hymn-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px;
+  border: 2px solid var(--muted, #d1d5db);
+  border-radius: 6px;
+  background: var(--bg, #fff);
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 8px;
+}
+
+.hymn-card:hover {
+  border-color: var(--accent, #6366f1);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.hymn-number {
+  font-weight: bold;
+  color: var(--accent, #6366f1);
+  font-size: 1.1em;
+}
+
+.hymn-status {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.hymn-stars {
+  color: #fbbf24;
+  font-size: 0.9em;
+  height: 16px;
+}
+
+.hymn-actions {
+  width: 100%;
+}
+
+.hymn-actions select {
+  width: 100%;
+  padding: 4px;
+  font-size: 0.75em;
+  border: 1px solid var(--muted, #d1d5db);
+  border-radius: 4px;
+}
+
+.load-more {
+  text-align: center;
+  padding: 20px;
+}
+
+.load-more button {
+  padding: 10px 20px;
+  background: var(--accent, #6366f1);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95em;
+}
+
+.load-more button:hover {
+  background: var(--accent-dark, #4f46e5);
+}
+
+/* ==================== REVISÃO ====================*/
+
+.review-container {
+  padding: 20px;
+}
+
+.review-section {
+  margin-bottom: 30px;
+  padding: 20px;
+  background: var(--muted, #f9fafb);
+  border-radius: 8px;
+  border-left: 4px solid var(--accent, #6366f1);
+}
+
+.review-section h3 {
+  margin: 0 0 16px 0;
+  color: var(--accent, #6366f1);
+  font-size: 1.1em;
+}
+
+.review-section h4 {
+  margin: 12px 0 8px 0;
+  color: var(--text, #333);
+  font-size: 0.95em;
+}
+
+.review-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.review-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px;
+  background: var(--bg, #fff);
+  border-radius: 6px;
+  border: 1px solid var(--muted, #e5e7eb);
+}
+
+.review-item span {
+  flex: 1;
+  color: var(--text, #333);
+}
+
+.review-item .btn-review {
+  margin-left: 12px;
+}
+
+/* ==================== NOTIFICAÇÕES ====================*/
+
+.notification {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 20px;
+  background: var(--accent, #6366f1);
+  color: white;
+  border-radius: 6px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  animation: slideIn 0.3s ease;
+  z-index: 1000;
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateX(400px);
+    opacity: 0;
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+
+/* ==================== RESPONSIVO ====================*/
+
+@media (max-width: 768px) {
+  .accordion-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .accordion-progress {
+    width: 100%;
+    margin-top: 8px;
+  }
+
+  .section-actions {
+    width: 100%;
+    flex-direction: column;
+  }
+
+  .status-select,
+  .btn-pdf,
+  .btn-review {
+    width: 100%;
+  }
+
+  .hymn-grid {
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  }
+
+  .review-item {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .review-item .btn-review {
+    width: 100%;
+    margin-left: 0;
+    margin-top: 8px;
+  }
+}
+
+/* ==================== VISUALIZADOR DE PDF ====================*/
+
+.pdf-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.pdf-modal-content {
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  height: 90%;
+  max-width: 1200px;
+  background: var(--bg, #fff);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.pdf-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px;
+  background: linear-gradient(135deg, #1f2937, #111827);
+  color: white;
+  border-bottom: 1px solid #374151;
+}
+
+.pdf-header h3 {
+  margin: 0;
+  font-size: 1.1em;
+  flex: 1;
+}
+
+.pdf-controls {
+  display: flex;
+  gap: 8px;
+}
+
+.pdf-btn {
+  padding: 8px 12px;
+  background: #374151;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1.1em;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pdf-btn:hover {
+  background: #4b5563;
+  transform: translateY(-1px);
+}
+
+.pdf-btn:active {
+  transform: translateY(0);
+}
+
+.pdf-container {
+  flex: 1;
+  display: flex;
+  overflow: hidden;
+}
+
+.pdf-container iframe {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==================== HINÁRIO MELHORADO ====================*/
+
+.hymn-controls {
+  margin: 20px 0;
+}
+
+.hymn-controls input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--muted, #d1d5db);
+  border-radius: 8px;
+  font-size: 0.95em;
+  background: var(--bg, #fff);
+  color: var(--text, #333);
+  transition: border-color 0.2s;
+}
+
+.hymn-controls input:focus {
+  outline: none;
+  border-color: var(--accent, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.hymn-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+.hymn-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 2px solid var(--muted, #d1d5db);
+  border-radius: 10px;
+  background: var(--bg, #fff);
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 12px;
+  min-height: 200px;
+}
+
+.hymn-card:hover {
+  border-color: var(--accent, #6366f1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(99, 102, 241, 0.2);
+}
+
+.hymn-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 8px;
+}
+
+.hymn-number-badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1.1em;
+  flex-shrink: 0;
+}
+
+.hymn-title-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.hymn-title {
+  margin: 0;
+  color: var(--text, #333);
+  font-size: 0.95em;
+  font-weight: 600;
+  line-height: 1.3;
+}
+
+.hymn-status-icon {
+  font-size: 1.3em;
+}
+
+.hymn-rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.hymn-stars {
+  color: #fbbf24;
+  font-size: 1em;
+}
+
+.hymn-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: auto;
+}
+
+.btn-view-hymn {
+  padding: 10px 12px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 0.85em;
+  cursor: pointer;
+  transition: all 0.2s;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.btn-view-hymn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.btn-small {
+  padding: 8px 10px;
+  font-size: 0.8em;
+}
+
+.hymn-status-select {
+  padding: 8px;
+  font-size: 0.8em;
+  border: 1px solid var(--muted, #d1d5db);
+  border-radius: 4px;
+  background: var(--bg, #fff);
+  color: var(--text, #333);
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.hymn-status-select:hover {
+  border-color: var(--accent, #6366f1);
+}
+
+.load-more-container {
+  text-align: center;
+  padding: 30px 20px;
+  background: var(--muted, #f9fafb);
+  border-radius: 8px;
+  margin: 20px 0;
+}
+
+.load-more-container .btn {
+  padding: 12px 24px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+.load-more-container .btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.4);
+}
+
+.load-more-container .btn:active {
+  transform: translateY(0);
+}
+
+/* ==================== RESPONSIVIDADE ====================*/
+
+/* ==================== HINÁRIO TABS ====================*/
+
+.hinario-tabs {
+  display: flex;
+  gap: 0;
+  border-bottom: 3px solid var(--muted, #e5e7eb);
+  margin: 20px 0;
+  background: var(--muted, #f3f4f6);
+  border-radius: 8px 8px 0 0;
+}
+
+.tab-btn {
+  flex: 1;
+  padding: 14px 16px;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 500;
+  color: var(--muted-text, #666);
+  transition: all 0.2s;
+  position: relative;
+}
+
+.tab-btn:hover {
+  background: rgba(99, 102, 241, 0.05);
+  color: var(--text, #333);
+}
+
+.tab-btn.active {
+  color: var(--accent, #6366f1);
+  background: var(--bg, #fff);
+  font-weight: 600;
+}
+
+.tab-btn.active::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--accent, #6366f1);
+}
+
+/* ==================== HINÁRIO TAB ====================*/
+
+.hinario-tab {
+  animation: fadeIn 0.3s ease;
+}
+
+.hinario-tab.active {
+  display: block;
+}
+
+/* ==================== HINÁRIO SEARCH ====================*/
+
+.hinario-search {
+  margin: 20px 0;
+}
+
+.hinario-search input {
+  width: 100%;
+  padding: 12px 16px;
+  border: 2px solid var(--muted, #d1d5db);
+  border-radius: 8px;
+  font-size: 0.95em;
+  background: var(--bg, #fff);
+  color: var(--text, #333);
+  transition: all 0.2s;
+}
+
+.hinario-search input:focus {
+  outline: none;
+  border-color: var(--accent, #6366f1);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+}
+
+.hinario-search input::placeholder {
+  color: var(--muted-text, #999);
+}
+
+/* ==================== HINOS GRID ====================*/
+
+.hinos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+/* ==================== COROS GRID ====================*/
+
+.coros-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+  margin: 20px 0;
+}
+
+/* ==================== CORO CARD ====================*/
+
+.coro-card {
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border: 2px solid #cce7ff;
+  border-radius: 10px;
+  background: #f0f9ff;
+  cursor: pointer;
+  transition: all 0.2s;
+  gap: 12px;
+  min-height: 200px;
+}
+
+.coro-card:hover {
+  border-color: var(--accent, #6366f1);
+  transform: translateY(-4px);
+  box-shadow: 0 8px 16px rgba(99, 102, 241, 0.2);
+}
+
+.coro-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #0ea5e9, #0284c7);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0 auto;
+}
+
+.coro-name {
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text, #333);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.coro-status {
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--muted-text, #666);
+}
+
+.coro-stars {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.coro-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* ==================== HYMN CARD ENHANCEMENTS ====================*/
+
+.hymn-number {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  background: linear-gradient(135deg, #6366f1, #8b5cf6);
+  color: white;
+  border-radius: 50%;
+  font-weight: bold;
+  font-size: 1em;
+  margin: 0 auto;
+}
+
+.hymn-name {
+  text-align: center;
+  font-size: 0.9em;
+  font-weight: 500;
+  color: var(--text, #333);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+}
+
+.hymn-status {
+  text-align: center;
+  font-size: 0.8em;
+  color: var(--muted-text, #666);
+}
+
+.hymn-stars {
+  display: flex;
+  justify-content: center;
+  gap: 4px;
+}
+
+.hymn-actions {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: auto;
+}
+
+/* ==================== MINI BUTTONS ====================*/
+
+.btn.mini {
+  padding: 6px 10px;
+  font-size: 0.75em;
+  border-radius: 4px;
+}
+
+/* ==================== MSA ACTIONS ====================*/
+
+.msa-actions {
+  margin: 20px 0;
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.msa-actions .btn {
+  flex: 1;
+  min-width: 200px;
+}
+
+/* ==================== PDF VIEWER CONTAINER ====================*/
+
+.pdf-viewer-container {
+  margin: 20px 0;
+  border: 2px solid var(--muted, #d1d5db);
+  border-radius: 8px;
+  overflow: hidden;
+  height: 600px;
+}
+
+.pdf-viewer {
+  width: 100%;
+  height: 100%;
+}
+
+/* ==================== MSA PHASES CONTAINER ====================*/
+
+.msa-phases-container {
+  margin: 20px 0;
+}
+
+@media (max-width: 768px) {
+  .hymn-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  }
+
+  .hinos-grid {
+    grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  }
+
+  .coros-grid {
+    grid-template-columns: repeat(auto-fill, minmax(130px, 1fr));
+  }
+
+  .pdf-modal-content {
+    width: 95%;
+    height: 95%;
+  }
+
+  .hymn-card {
+    min-height: 160px;
+  }
+
+  .coro-card {
+    min-height: 160px;
+  }
+
+  .hymn-number-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 0.9em;
+  }
+
+  .hinario-tabs {
+    flex-direction: column;
+  }
+
+  .tab-btn {
+    border-bottom: 3px solid var(--muted, #e5e7eb);
+  }
+
+  .tab-btn.active::after {
+    bottom: 0;
+    left: 0;
+    height: 3px;
+  }
+}

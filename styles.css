@@ -1,0 +1,119 @@
+:root{
+  --bg:#f6f8fb;--card:#ffffff;--muted:#6b7280;--accent:#6b8ef6;--success:#34d399;
+  --radius:12px;--glass: rgba(255,255,255,0.6);
+}
+body.dark{--bg:#0b1220;--card:#0f1724;--muted:#9ca3af;--accent:#7c9cff;--success:#34d399}
+*{box-sizing:border-box}
+html,body{height:100%;margin:0;font-family:Inter,system-ui,Segoe UI,Arial;background:var(--bg);color:var(--muted)}
+.sidebar{width:220px;background:linear-gradient(180deg,var(--card),var(--glass));position:fixed;inset:0 auto 0 0;padding:20px;border-right:1px solid rgba(0,0,0,0.06)}
+.brand{font-weight:700;margin-bottom:12px;font-size:18px;color:var(--accent)}
+.sidebar nav{display:flex;flex-direction:column;gap:8px}
+.sidebar a{color:var(--muted);text-decoration:none;padding:8px;border-radius:8px}
+.sidebar a.active{background:rgba(0,0,0,0.05);color:var(--accent)}
+.main{margin-left:240px;padding:18px}
+.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+.dashboard-summary{display:flex;gap:18px;color:var(--muted);font-size:14px}
+.quote{font-weight:600;color:var(--muted)}
+.content{display:block}
+.view{display:none}
+.view.active{display:block}
+.card{background:var(--card);padding:14px;border-radius:var(--radius);box-shadow:0 6px 18px rgba(16,24,40,0.04);margin-bottom:12px;color:var(--muted)}
+.card.small{max-width:380px}
+.btn{padding:8px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.06);background:transparent;color:var(--muted);cursor:pointer}
+.btn.primary{background:var(--accent);color:white;border:none}
+.list{display:flex;flex-direction:column;gap:8px}
+.prayer-item{display:flex;justify-content:space-between;align-items:center;padding:8px;border-radius:10px;border:1px solid rgba(0,0,0,0.03);background:linear-gradient(180deg,transparent,rgba(0,0,0,0.01))}
+.prayer-item .left{display:flex;gap:12px;align-items:center}
+.prayer-item .time{font-weight:700;color:var(--accent);width:78px}
+.prayer-item .meta .title{font-weight:600}
+.prayer-item button{margin-left:6px}
+.progress{height:12px;background:rgba(0,0,0,0.06);border-radius:999px;overflow:hidden}
+.progress .fill{width:0%;height:100%;background:linear-gradient(90deg,var(--accent),#8ef6c5)}
+textarea{width:100%;padding:8px;border-radius:8px;border:1px solid rgba(0,0,0,0.06)}
+form label{display:block;margin-bottom:8px}
+#calendarRoot{display:grid;grid-template-columns:repeat(7,1fr);gap:6px}
+.cal-day{min-height:88px;padding:8px;border-radius:8px;background:rgba(0,0,0,0.02)}
+.cal-day .indicators{margin-top:6px;display:flex;gap:4px}
+.indicator-prayer{width:8px;height:8px;border-radius:8px;background:#f59e0b}
+.indicator-study{width:8px;height:8px;border-radius:8px;background:#60a5fa}
+.footer{margin-top:20px;color:var(--muted);font-size:13px}
+
+/* Modal styles */
+.modal-backdrop{position:fixed;inset:0;background:rgba(2,6,23,0.6);display:none;align-items:center;justify-content:center;padding:20px;z-index:60}
+.modal-backdrop.active{display:flex}
+.modal{background:var(--card);padding:16px;border-radius:12px;max-width:520px;width:100%;box-shadow:0 10px 40px rgba(2,6,23,0.6);color:var(--muted)}
+.modal h3{margin-top:0}
+.form-row{display:flex;gap:8px}
+.form-row .col{flex:1}
+.modal .actions{display:flex;gap:8px;justify-content:flex-end;margin-top:12px}
+.last-notified{font-size:12px;color:var(--muted);margin-left:8px}
+
+/* small improvements */
+.topbar .quote{font-size:15px}
+.prayer-item.completed{opacity:0.6;text-decoration:line-through;border-style:dashed}
+
+/* Estudo musical layout */
+.music-header{display:flex;justify-content:space-between;align-items:center;gap:16px;margin-bottom:16px;flex-wrap:wrap}
+.music-header h2{margin:0}
+.music-header-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.music-stat-grid{display:grid;grid-template-columns:repeat(6,minmax(120px,1fr));gap:12px;margin-bottom:18px}
+.summary-card{background:var(--card);padding:12px;border-radius:12px;border:1px solid rgba(0,0,0,0.06);box-shadow:0 6px 18px rgba(16,24,40,0.04);display:flex;flex-direction:column;gap:6px}
+.summary-card span{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:0.05em}
+.summary-card strong{font-size:1.05rem;color:var(--accent)}
+.grid-areas,.compact-areas-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.area-card{padding:12px;border-radius:10px;background:linear-gradient(180deg,transparent,rgba(0,0,0,0.03));min-height:100px;border:1px solid rgba(0,0,0,0.06);text-align:left;cursor:pointer;color:inherit}
+.area-card h4{margin:0 0 8px 0}
+.area-card .small{font-size:13px;color:var(--muted)}
+
+.gamification-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:16px 0}
+.gamification-card{background:linear-gradient(180deg,rgba(107,142,246,0.08),rgba(52,211,153,0.04));border:1px solid rgba(107,142,246,0.15);border-radius:12px;padding:14px}
+.gamification-card h4{margin:0 0 10px;color:var(--muted)}
+.gamification-row{display:flex;justify-content:space-between;gap:10px;align-items:center;margin:6px 0}
+.level-pill{display:inline-flex;align-items:center;padding:6px 10px;border-radius:30px;background:rgba(107,142,246,0.12);color:var(--accent);font-weight:700;font-size:12px}
+.mini-meta{font-size:12px;color:var(--muted);margin:4px 0}
+.mission-card,.hymn-card,.achievement-item{padding:12px;border:1px solid rgba(0,0,0,0.05);border-radius:10px;background:rgba(255,255,255,0.02);margin-top:10px}
+.mission-card h5,.hymn-card h5{margin:0 0 6px}
+.badge{display:inline-block;padding:3px 8px;border-radius:999px;font-size:11px;font-weight:700;margin-right:5px}
+.badge.locked{background:rgba(148,163,184,0.18);color:#64748b}
+.badge.in_progress{background:rgba(59,130,246,0.15);color:#2563eb}
+.badge.completed{background:rgba(52,211,153,0.18);color:#059669}
+.status-label{font-size:11px;font-weight:700;letter-spacing:0.03em}
+.mission-actions,.hymn-actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+.mission-actions .btn,.hymn-actions .btn{padding:6px 8px;font-size:12px}
+.gamification-summary{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}
+.summary-box{background:rgba(0,0,0,0.02);padding:10px;border-radius:10px}
+.summary-box strong{display:block;font-size:20px;color:var(--accent)}
+.summary-box span{font-size:12px}
+.achievement-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:10px}
+.achievement-item{background:linear-gradient(180deg,rgba(234,179,8,0.08),rgba(0,0,0,0.02));}
+.star-row{color:#fbbf24;letter-spacing:2px}
+.instrument-select{width:100%;padding:9px 10px;border-radius:8px;border:1px solid rgba(0,0,0,0.08);background:var(--card);color:var(--muted)}
+.compact-panel{padding:16px}
+.compact-area-grid{display:grid;grid-template-columns:repeat(3,minmax(90px,1fr));gap:8px;margin:12px 0}
+.compact-area-item{padding:8px 10px;border:1px solid rgba(0,0,0,0.05);border-radius:8px;background:rgba(255,255,255,0.04);display:flex;flex-direction:column;gap:4px}
+.compact-area-item span{font-size:11px;color:var(--muted)}
+.compact-area-item strong{font-size:18px;color:var(--accent)}
+.compact-summary-row{grid-template-columns:repeat(3,1fr)}
+.compact-actions{margin-top:10px}
+.compact-study-list{display:flex;flex-direction:column;gap:10px}
+.compact-study-row{display:grid;grid-template-columns:1.5fr auto auto;gap:8px;align-items:center;padding:10px 12px;border:1px solid rgba(0,0,0,0.05);border-radius:10px;background:rgba(255,255,255,0.02)}
+.compact-study-meta{display:flex;flex-direction:column;gap:4px}
+.compact-study-meta span{font-size:11px;color:var(--muted)}
+.compact-study-actions{display:flex;gap:8px;justify-content:flex-end;flex-wrap:wrap}
+.mini-btn{padding:6px 8px;font-size:11px}
+
+@media(max-width:900px){.sidebar{position:relative;width:100%;display:flex;gap:8px;align-items:center}.main{margin-left:0;padding:12px}.topbar{flex-direction:column;align-items:flex-start}.dashboard-summary{flex-wrap:wrap}.gamification-summary{grid-template-columns:1fr 1fr}.mission-actions,.hymn-actions{display:grid;grid-template-columns:1fr 1fr}.compact-study-row{grid-template-columns:1fr;align-items:flex-start}.compact-study-actions{justify-content:flex-start}}
+
+/* MSA Accordion Styles */
+.msa-header{margin-bottom:16px}.msa-header h3{margin:0 0 10px;font-size:18px}.msa-header .progress{height:8px;border-radius:4px;background:rgba(0,0,0,0.05);margin-bottom:6px}.msa-header .progress .fill{height:100%;background:linear-gradient(90deg,#10b981,#06b6d4);border-radius:4px;transition:width 0.3s}
+.msa-actions{display:flex;gap:10px;margin:12px 0;flex-wrap:wrap}.msa-actions .btn{flex:1;min-width:120px}.msa-actions input{flex:1;min-width:150px}
+.msa-phases-container{display:flex;flex-direction:column;gap:8px}
+.accordion-phase{border:1px solid rgba(0,0,0,0.08);border-radius:8px;overflow:hidden}
+.accordion-header{display:flex;align-items:center;gap:10px;padding:12px;background:rgba(107,142,246,0.05);cursor:pointer;user-select:none;transition:background 0.2s}.accordion-header:hover{background:rgba(107,142,246,0.1)}
+.accordion-icon{display:inline-block;width:16px;transition:transform 0.2s;font-size:12px}
+.accordion-body{border-top:1px solid rgba(0,0,0,0.05);padding:8px;background:rgba(255,255,255,0.5)}
+.section-item{display:flex;gap:10px;align-items:center;padding:10px;border-bottom:1px solid rgba(0,0,0,0.03)}.section-item:last-child{border-bottom:none}
+.section-actions{display:flex;gap:6px;align-items:center}.section-actions select{padding:4px 8px;border:1px solid rgba(0,0,0,0.08);border-radius:4px;font-size:12px}.section-actions .btn.mini{padding:4px 8px;font-size:11px}
+.hymn-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:8px;margin-top:12px}
+.hymn-card{display:flex;align-items:center;justify-content:space-between;padding:10px;border:1px solid rgba(0,0,0,0.08);border-radius:8px;background:rgba(255,255,255,0.02);gap:8px}.hymn-card select{flex:1;padding:4px;font-size:10px;border:1px solid rgba(0,0,0,0.08);border-radius:4px}
+#msaAreaContainer{padding:8px 0}

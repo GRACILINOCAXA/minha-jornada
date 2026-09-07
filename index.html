@@ -1,0 +1,260 @@
+﻿<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Minha Jornada</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="study-app.css">
+</head>
+<body class="light">
+  <aside class="sidebar">
+    <div class="brand">Minha Jornada</div>
+    <nav>
+      <a href="#dashboard" class="active">🏠 Início</a>
+      <a href="#prayers">🙏 Orações</a>
+      <a href="#music">🎵 Estudo Musical</a>
+      <a href="#calendar">📅 Calendário</a>
+      <a href="#goals">🎯 Metas</a>
+      <a href="#progress">📊 Progresso</a>
+      <a href="#notes">📝 Anotações</a>
+      <a href="#settings">⚙️ Configurações</a>
+    </nav>
+    <div class="theme-toggle">
+      <button id="themeToggle">🌙</button>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="dashboard-summary">
+        <div>🙏 Orações hoje: <span id="summaryPrayers">0/0</span></div>
+        <div>📚 Progresso MSA: <span id="summaryMSA">0%</span></div>
+        <div>⏱️ Tempo estudado: <span id="summaryTime">0h 0m</span></div>
+        <div>🔥 Sequência: <span id="summaryStreak">0 dias</span></div>
+      </div>
+      <div id="dailyQuote" class="quote">"Um pouco todos os dias gera grandes resultados."</div>
+      <div style="display:flex;gap:10px;align-items:center;margin-left:auto;">
+        <span id="userDisplay" style="color:#666;font-size:14px;">Usuário</span>
+        <button id="logoutBtn" class="btn" style="background:#c33;color:white;padding:6px 12px;border:none;border-radius:4px;cursor:pointer;">Sair</button>
+      </div>
+    </header>
+
+    <section id="content" class="content">
+      <!-- Dashboard -->
+      <section id="dashboard" class="view active">
+        <h2>Hoje</h2>
+        <div class="card">
+          <h3>🙏 Momentos de oração</h3>
+          <div id="todayPrayersList" class="list"></div>
+          <div class="today-indicator">
+            <div id="todayProgressBar" class="progress"><div class="fill"></div></div>
+            <div id="todaySummary"></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>📚 Estudo</h3>
+          <div id="todayStudy"></div>
+        </div>
+
+        <div class="card small">
+          <h4>🎯 Objetivo do dia</h4>
+          <div id="dailyGoal">Complete seus momentos de oração e estude pelo menos 30 minutos.</div>
+        </div>
+      </section>
+
+      <!-- Prayers -->
+      <section id="prayers" class="view">
+        <h2>Meus momentos de oração</h2>
+        <div class="card">
+          <div id="prayersList"></div>
+          <button id="addPrayerBtn" class="btn primary">+ Adicionar momento de oração</button>
+        </div>
+        <div class="card">
+          <h4>Histórico de Orações</h4>
+          <div id="prayerHistory"></div>
+        </div>
+      </section>
+
+      <!-- Studies -->
+      <section id="studies" class="view" style="display:none;">
+        <!-- Integrado em #music -->
+      </section>
+
+      <!-- Estudo Musical -->
+      <section id="music" class="view">
+        <div class="music-header">
+          <div>
+            <h2 id="musicTitle">🎵 Estudo Musical</h2>
+            <div class="mini-meta">Instrumento atual: <strong id="musicInstrumentLabel">Teclado</strong></div>
+          </div>
+          <div class="music-header-actions">
+            <button id="musicBackBtn" class="btn" onclick="StudyApp.goBack()" style="display:none;">← Voltar</button>
+            <button id="reviewBtn" class="btn" onclick="StudyApp.loadReviewItems()" title="Conteúdo para revisar">🔄 Revisar</button>
+          </div>
+        </div>
+
+        <div class="music-stat-grid">
+          <div class="summary-card">
+            <span>Instrumento</span>
+            <strong id="summaryInstrument">Teclado</strong>
+          </div>
+          <div class="summary-card">
+            <span>Nível</span>
+            <strong id="summaryLevel">1</strong>
+          </div>
+          <div class="summary-card">
+            <span>XP</span>
+            <strong id="summaryXp">0</strong>
+          </div>
+          <div class="summary-card">
+            <span>MSA</span>
+            <strong id="summaryMsaProgress">0%</strong>
+          </div>
+          <div class="summary-card">
+            <span>Sequência</span>
+            <strong id="summaryStreak">0d</strong>
+          </div>
+          <div class="summary-card">
+            <span>Orações hoje</span>
+            <strong id="summaryPrayerCount">0/0</strong>
+          </div>
+        </div>
+
+        <!-- Visão Principal do MSA -->
+        <div id="musicMainView">
+          <div class="card">
+            <h3>📚 MSA — Método e Hábito de Estudo</h3>
+            <div id="gamificationPanel"></div>
+            <p style="font-size: 12px; color: #999; margin-top: 10px;">Selecione uma área para começar a estudar. Seu progresso é salvo automaticamente.</p>
+          </div>
+
+          <div class="card">
+            <div class="compact-areas-grid">
+              <button class="area-card" id="area-teoria" data-study-area="teoria" type="button">
+                <h4>📖 Teoria</h4>
+                <div class="progress" style="height:4px;margin:8px 0;"><div class="fill" id="progress-teoria"></div></div>
+                <div id="progress-text-teoria" style="font-size:11px;">Clique para estudar</div>
+              </button>
+              <button class="area-card" id="area-metodo" data-study-area="metodo" type="button">
+                <h4>🎼 Método</h4>
+                <div style="font-size: 12px; color: #999; margin-bottom: 8px;">Instrumento: <select id="instrumentSelect" style="padding: 6px 8px; border-radius: 4px; border: 1px solid #ddd; background-color: white; cursor: pointer; font-size: 13px;" onchange="event.stopPropagation()"><optgroup label="🎹 Teclados"><option value="teclado">Piano / Teclado</option><option value="orgao_eletronico">Órgão Eletrônico</option></optgroup><optgroup label="🎸 Cordas Dedilhadas"><option value="violao">Violão</option><option value="guitarra">Guitarra</option><option value="baixo">Baixo Elétrico</option></optgroup><optgroup label="🎻 Cordas Arcadas"><option value="violino">Violino</option><option value="viola">Viola</option><option value="violoncelo">Violoncelo</option></optgroup><optgroup label="🪈 Sopros — Madeira"><option value="flauta">Flauta</option><option value="oboe">Oboé</option><option value="oboe_damore">Oboé d'Amore</option><option value="corne_ingles">Corne Inglês</option><option value="fagote">Fagote</option><option value="clarinete">Clarinete</option></optgroup><optgroup label="🎷 Sopros — Saxofone"><option value="saxofone_soprano">Saxofone Soprano</option><option value="saxofone_alto">Saxofone Alto</option><option value="saxofone_tenor">Saxofone Tenor</option><option value="saxofone_baritono">Saxofone Barítono</option></optgroup><optgroup label="🎺 Sopros — Latão"><option value="trompete">Trompete</option><option value="trompa">Trompa</option><option value="trombone">Trombone</option><option value="baritono">Barítono</option><option value="eufonio">Eufônio</option><option value="tuba">Tuba</option></optgroup><optgroup label="🎤 Voz"><option value="canto">Canto</option></optgroup><optgroup label="🥁 Percussão"><option value="bateria">Bateria / Percussão</option></optgroup></select></div>
+                <div class="progress" style="height:4px;margin:8px 0;"><div class="fill" id="progress-metodo"></div></div>
+                <div id="progress-text-metodo" style="font-size:11px;">Clique para estudar</div>
+              </button>
+              <button class="area-card" id="area-hinario" data-study-area="hinario" type="button">
+                <h4>🎵 Hinário</h4>
+                <div class="progress" style="height:4px;margin:8px 0;"><div class="fill" id="progress-hinario"></div></div>
+                <div id="progress-text-hinario" style="font-size:11px;">Clique para estudar</div>
+              </button>
+            </div>
+          </div>
+
+          <div class="card">
+            <h4>▶️ Continuar Estudo</h4>
+            <button id="continueStudyBtn" class="btn primary" style="display:none;">Continuar Estudo</button>
+            <p id="noActivityMsg" style="color: #999;">Comece a estudar para ver sua próxima atividade aqui.</p>
+          </div>
+
+          <div class="card">
+            <h4>📊 Estatísticas</h4>
+            <div>
+              <div>⏱️ Tempo total estudado: <strong id="musicTotalTime">0h 0m</strong></div>
+              <div>📚 Total de sessões: <strong id="musicTotalSessions">0</strong></div>
+              <div>🎯 Próximo objetivo: <strong id="musicNextGoal">—</strong></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Visão de Estudo (Study App) -->
+        <div id="musicAreaView" style="display:none;">
+          <div class="card study-container">
+            <div id="studyContainer" style="min-height: 400px;"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Calendar -->
+      <section id="calendar" class="view">
+        <h2>Calendário</h2>
+        <div class="card">
+          <div id="calendarRoot"></div>
+          <div id="dayDetails"></div>
+        </div>
+      </section>
+
+      <!-- Goals -->
+      <section id="goals" class="view">
+        <h2>Minhas metas</h2>
+        <div class="card">
+          <div id="goalsList"></div>
+          <button id="addGoalBtn" class="btn primary">+ Nova meta</button>
+        </div>
+      </section>
+
+      <!-- Progress -->
+      <section id="progress" class="view">
+        <h2>Progresso</h2>
+        <div class="card" id="progressDetails"></div>
+      </section>
+
+      <!-- Notes -->
+      <section id="notes" class="view">
+        <h2>Anotações</h2>
+        <div class="card">
+          <textarea id="notesArea" placeholder="Escreva suas anotações..." rows="8"></textarea>
+          <div><button id="saveNotes" class="btn">Salvar</button></div>
+        </div>
+      </section>
+
+      <!-- Settings -->
+      <section id="settings" class="view">
+        <h2>Configurações</h2>
+        <div class="card">
+          <div class="notif-row">
+            <label><input type="checkbox" id="enableNotifications"> Ativar notificações</label>
+            <span id="notifStatus">🔴 Desativadas</span>
+            <button id="enableNotificationsBtn" class="btn primary">🔔 Ativar notificações</button>
+            <button id="testNotificationBtn" class="btn">Testar notificação</button>
+            <button id="testNotification10sBtn" class="btn">🧪 Testar notificação em 10 segundos</button>
+          </div>
+          <div class="next-prayer">Próxima oração: <span id="nextPrayer">—</span></div>
+          <label>Meta diária de estudo (min) <input type="number" id="dailyGoalStudy" value="30"></label>
+          <label>Instrumento principal<select id="selectedInstrument" class="instrument-select" style="width: 100%; padding: 8px; margin-top: 5px; border-radius: 4px; border: 1px solid #ddd; background-color: white; cursor: pointer; font-size: 14px;"><optgroup label="🎹 Teclados"><option value="teclado">Piano / Teclado</option><option value="orgao_eletronico">Órgão Eletrônico</option></optgroup><optgroup label="🎸 Cordas Dedilhadas"><option value="violao">Violão</option><option value="guitarra">Guitarra</option><option value="baixo">Baixo Elétrico</option></optgroup><optgroup label="🎻 Cordas Arcadas"><option value="violino">Violino</option><option value="viola">Viola</option><option value="violoncelo">Violoncelo</option></optgroup><optgroup label="🪈 Sopros — Madeira"><option value="flauta">Flauta</option><option value="oboe">Oboé</option><option value="oboe_damore">Oboé d'Amore</option><option value="corne_ingles">Corne Inglês</option><option value="fagote">Fagote</option><option value="clarinete">Clarinete</option></optgroup><optgroup label="🎷 Sopros — Saxofone"><option value="saxofone_soprano">Saxofone Soprano</option><option value="saxofone_alto">Saxofone Alto</option><option value="saxofone_tenor">Saxofone Tenor</option><option value="saxofone_baritono">Saxofone Barítono</option></optgroup><optgroup label="🎺 Sopros — Latão"><option value="trompete">Trompete</option><option value="trompa">Trompa</option><option value="trombone">Trombone</option><option value="baritono">Barítono</option><option value="eufonio">Eufônio</option><option value="tuba">Tuba</option></optgroup><optgroup label="🎤 Voz"><option value="canto">Canto</option></optgroup><optgroup label="🥁 Percussão"><option value="bateria">Bateria / Percussão</option></optgroup></select>
+          </label>
+          <div class="actions">
+            <button id="exportBtn" class="btn">Exportar dados</button>
+            <input type="file" id="importFile" style="display:none">
+            <button id="importBtn" class="btn">Importar dados</button>
+            <button id="backupBtn" class="btn">Fazer backup (download)</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <footer class="footer">Feito com ❤️ — Minha Jornada</footer>
+  </main>
+
+  <template id="prayerTemplate">
+    <div class="prayer-item">
+      <div class="left">
+        <div class="time"></div>
+        <div class="meta"><div class="title"></div><div class="desc"></div></div>
+      </div>
+      <div class="right">
+        <button class="complete">Concluído ✓</button>
+        <button class="toggle">Ativar</button>
+        <button class="edit">Editar</button>
+        <button class="delete">Excluir</button>
+      </div>
+    </div>
+  </template>
+
+  <script src="api-client.js"></script>
+  <script src="msa-client.js"></script>
+  <script src="study-app.js"></script>
+  <script src="study-app-v2.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
