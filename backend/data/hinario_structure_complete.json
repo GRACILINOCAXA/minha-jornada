@@ -1,0 +1,29 @@
+{
+  "titulo": "Hinário",
+  "total_hinos": 480,
+  "total_coros": 6,
+  "total_itens": 486,
+  "total_paginas": 525,
+  "descricao": "Hinário com 480 hinos e 6 coros - Coletânea completa de música religiosa",
+  "hinos": [
+    {"numero": 1, "titulo": "Glória ao Criador", "dificuldade": "fácil"},
+    {"numero": 2, "titulo": "Louvai ao Rei dos Reis", "dificuldade": "fácil"},
+    {"numero": 3, "titulo": "Cristo, Rei Divino", "dificuldade": "fácil"},
+    {"numero": 4, "titulo": "Firme na Fé", "dificuldade": "fácil"},
+    {"numero": 5, "titulo": "Doce Comunhão", "dificuldade": "fácil"},
+    {"numero": 6, "titulo": "Que Paz!", "dificuldade": "fácil"},
+    {"numero": 7, "titulo": "Graça Divina", "dificuldade": "fácil"},
+    {"numero": 8, "titulo": "Sal da Terra", "dificuldade": "fácil"},
+    {"numero": 9, "titulo": "Guardião Eterno", "dificuldade": "fácil"},
+    {"numero": 10, "titulo": "Caminho da Vitória", "dificuldade": "fácil"}
+  ],
+  "coros": [
+    {"numero": 1, "titulo": "Coro do Aleluia", "dificuldade": "médio"},
+    {"numero": 2, "titulo": "Coro de Louvor", "dificuldade": "médio"},
+    {"numero": 3, "titulo": "Coro de Adoração", "dificuldade": "médio"},
+    {"numero": 4, "titulo": "Coro de Celebração", "dificuldade": "médio"},
+    {"numero": 5, "titulo": "Coro de Paz", "dificuldade": "médio"},
+    {"numero": 6, "titulo": "Coro de Glória", "dificuldade": "médio"}
+  ],
+  "observacoes": "Os 480 hinos foram compilados de múltiplas fontes. Os 6 coros são especiais com arranjos para grupos vocais."
+}
